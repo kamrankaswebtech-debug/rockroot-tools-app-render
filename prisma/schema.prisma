@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.sqlite"
+}
+
+model Session {
+  id            String    @id
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        BigInt?
+  firstName     String?
+  lastName      String?
+  email         String?
+  accountOwner  Boolean   @default(false)
+  locale        String?
+  collaborator  Boolean?  @default(false)
+  emailVerified Boolean?  @default(false)
+  refreshToken        String?
+  refreshTokenExpires DateTime?
+}
+
+model Settings {
+  id        Int      @id @default(autoincrement())
+  shop      String   @unique
+
+  // Density values for volume calculator
+  densitySoil      Float  @default(1.4)
+  densitySand      Float  @default(1.5)
+  densityGravel    Float  @default(1.5)
+  densityScoria    Float  @default(0.85)
+  densityRoadbase  Float  @default(1.8)
+  densityRecycled  Float  @default(1.25)
+  densityBluemetal Float  @default(1.5)
+
+  // Concrete values
+  concreteSandMetal  Float  @default(0.7)
+  concreteCementBags Float  @default(7.5)
+  concretePremixBags Float  @default(108.0)
+
+  // Store info
+  phoneRouseHill    String @default("02 9629 2299")
+  phoneSouthWindsor String @default("02 4574 3299")
+
+  // Disclaimer text
+  disclaimerMain String @default("Estimated quantities are only as good as the information supplied. Please input measurements in correct units. Answers rounded up. Not for extremely small areas. Product densities can vary — this is an estimate only.")
+  disclaimerTurf String @default("We recommend at least 5% extra for wastage.")
+
+  // Product enable/disable toggles
+  enableSoil      Boolean @default(true)
+  enableSand      Boolean @default(true)
+  enableGravel    Boolean @default(true)
+  enableScoria    Boolean @default(true)
+  enableRoadbase  Boolean @default(true)
+  enableRecycled  Boolean @default(true)
+  enableBluemetal Boolean @default(true)
+  enableMulch     Boolean @default(true)
+  enableGardenMix Boolean @default(true)
+  enableConcrete  Boolean @default(true)
+
+  // Wastage and minimum order
+  wastagePercentageTurf Float @default(5)
+  minOrderTonnes        Float @default(1)
+  minOrderM3            Float @default(1)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+
+model DeliveryRate {
+  id         Int    @id @default(autoincrement())
+  shop       String
+  suburb     String
+  postalCode String @default("")
+  weekday    Float
+  saturday   Float
+  sunday     Float
+
+  @@unique([shop, suburb])
+}
+
+
+model EstimatorProduct {
+  id               Int     @id @default(autoincrement())
+  shop             String
+  shopifyProductId String
+  title            String
+  density          Float   @default(1.0)
+  unit             String  @default("tonnes")
+  category         String  @default("other")
+  enabled          Boolean @default(true)
+  sortOrder        Int     @default(0)
+
+  @@unique([shop, shopifyProductId])
+}

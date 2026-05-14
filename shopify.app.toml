@@ -1,0 +1,81 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "3202ea4af4c5cd521e2a21f308b00a0f"
+name = "rockroot-tools-app"
+application_url = "https://carefree-appreciation-production-53b3.up.railway.app"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+
+[webhooks]
+api_version = "2026-07"
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/scopes_update"
+  topics = [ "app/scopes_update" ]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/uninstalled"
+  topics = [ "app/uninstalled" ]
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products,write_metaobjects,write_metaobject_definitions"
+
+[auth]
+redirect_urls = [ "https://carefree-appreciation-production-53b3.up.railway.app/api/auth" ]
+
+[app_proxy]
+url = "https://carefree-appreciation-production-53b3.up.railway.app"
+subpath = "tools"
+prefix = "apps"
+
+
+[product.metafields.app.estimator_density]
+type = "number_decimal"
+name = "Estimator Density (t/m³)"
+description = "Material density used in quantity estimator calculations"
+
+  [product.metafields.app.estimator_density.access]
+  admin = "merchant_read_write"
+
+[product.metafields.app.estimator_unit]
+type = "single_line_text_field"
+name = "Estimator Unit"
+description = "Unit for estimator: tonnes or m3"
+
+  [product.metafields.app.estimator_unit.access]
+  admin = "merchant_read_write"
+
+[product.metafields.app.estimator_category]
+type = "single_line_text_field"
+name = "Estimator Category"
+description = "Category: soil, sand, gravel, mulch, gardenMix, scoria, roadbase, recycled, bluemetal, concrete"
+
+  [product.metafields.app.estimator_category.access]
+  admin = "merchant_read_write"
+
+[product.metafields.app.estimator_enabled]
+type = "boolean"
+name = "Show in Estimator"
+description = "Whether this product appears in the quantity estimator"
+
+  [product.metafields.app.estimator_enabled.access]
+  admin = "merchant_read_write"
+
+[metaobjects.app.example]
+name = "Example"
+description = "An example metaobject definition created by this template"
+
+  [metaobjects.app.example.access]
+  admin = "merchant_read_write"
+
+[metaobjects.app.example.fields.title]
+name = "Title"
+type = "single_line_text_field"
+required = true
+
+[metaobjects.app.example.fields.description]
+name = "Description"
+type = "multi_line_text_field"

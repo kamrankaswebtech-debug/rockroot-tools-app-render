@@ -1,0 +1,84 @@
+{% comment %} Delivery Estimator Block {% endcomment %}
+
+<div class="rockroot-delivery-estimator" id="rockroot-del-{{ block.id }}">
+    <iframe src="/apps/tools/delivery-estimator" width="100%" height="{{ block.settings.height }}px" frameborder="0"
+        scrolling="no" style="border:none; width:100%; display:block; min-height:{{ block.settings.height }}px;"
+        title="Delivery Fee Estimator"></iframe>
+</div>
+
+<style>
+    .rockroot-delivery-estimator {
+        width: 100%;
+
+        margin: {
+                {
+                block.settings.margin_top
+            }
+        }
+
+        px 0 {
+                {
+                block.settings.margin_bottom
+            }
+        }
+
+        px 0;
+    }
+
+    @media (max-width: 768px) {
+        .rockroot-delivery-estimator iframe {
+            min-height: {
+                    {
+                    block.settings.mobile_height
+                }
+            }
+
+            px;
+        }
+    }
+</style>
+
+{% schema %}
+{
+"name": "Delivery Estimator",
+"target": "section",
+"settings": [
+{
+"type": "range",
+"id": "height",
+"label": "Desktop Height (px)",
+"min": 400,
+"max": 1000,
+"step": 50,
+"default": 650
+},
+{
+"type": "range",
+"id": "mobile_height",
+"label": "Mobile Height (px)",
+"min": 500,
+"max": 1200,
+"step": 50,
+"default": 800
+},
+{
+"type": "range",
+"id": "margin_top",
+"label": "Top Margin (px)",
+"min": 0,
+"max": 100,
+"step": 5,
+"default": 0
+},
+{
+"type": "range",
+"id": "margin_bottom",
+"label": "Bottom Margin (px)",
+"min": 0,
+"max": 100,
+"step": 5,
+"default": 0
+}
+]
+}
+{% endschema %}
