@@ -2,7 +2,7 @@
 
 client_id = "3202ea4af4c5cd521e2a21f308b00a0f"
 name = "rockroot-tools-app"
-application_url = "https://rockrootsupplies.com.au"
+application_url = "https://rockroot-tools-app.onrender.com"
 embedded = true
 
 [build]
@@ -24,10 +24,10 @@ api_version = "2026-07"
 scopes = "write_products,write_metaobjects,write_metaobject_definitions"
 
 [auth]
-redirect_urls = [ "https://rockrootsupplies.com.au/api/auth" ]
+redirect_urls = [ "https://rockroot-tools-app.onrender.com/api/auth" ]
 
 [app_proxy]
-url = "https://rockrootsupplies.com.au"
+url = "https://rockroot-tools-app.onrender.com"
 subpath = "tools"
 prefix = "apps"
 
