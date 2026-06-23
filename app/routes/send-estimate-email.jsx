@@ -45,7 +45,7 @@ export async function action({ request }) {
         Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-       from: "onboarding@resend.dev",
+       from: "noreply@rockrootsupplies.com.au",
         to: email,
         subject: "Your Quantity Estimator Results - Rockroot Supplies",
         text: emailBody,
