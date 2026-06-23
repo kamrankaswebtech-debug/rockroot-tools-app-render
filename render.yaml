@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: rockroot-tools-app
+    runtime: docker
+    plan: free
+    region: singapore
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: file:/tmp/dev.sqlite
