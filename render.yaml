@@ -8,4 +8,4 @@ services:
       - key: NODE_ENV
         value: production
       - key: DATABASE_URL
-        value: file:/tmp/dev.sqlite
+        value: file:/app/dev.sqlite
